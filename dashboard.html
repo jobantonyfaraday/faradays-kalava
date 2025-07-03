@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Resources – EduPortal</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="dashboard">
+    <h2>Upload Previous Year Questions, Worksheets &amp; Notes</h2>
+    <form id="uploadForm">
+      <label>Select Subject:</label>
+      <select id="subjectSelect" required>
+        <option value="">--Choose Subject--</option>
+        <option value="MATH101">Mathematics</option>
+        <option value="PHY101">Physics</option>
+        <option value="CHEM101">Chemistry</option>
+        <option value="BIO101">Biology</option>
+      </select>
+
+      <label>Upload PYQs:</label>
+      <input type="file" id="pyqFile" accept=".pdf,.docx" required>
+
+      <label>Upload Worksheet:</label>
+      <input type="file" id="wsFile" accept=".pdf,.docx" required>
+
+      <label>Upload Extra Notes:</label>
+      <textarea id="notesText" rows="4" placeholder="Enter extra notes here..." required></textarea>
+
+      <button type="submit">Upload Resources</button>
+    </form>
+    <div id="uploadStatus"></div>
+  </div>
+
+  <script>
+    const uploadForm = document.getElementById('uploadForm');
+    uploadForm.addEventListener('submit', e => {
+      e.preventDefault();
+      // TODO: Implement actual upload logic via fetch/AJAX
+      document.getElementById('uploadStatus').textContent = 
+        `Resources for ${document.getElementById('subjectSelect').value} submitted successfully!`;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subject Resources – EduPortal</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="subject-container">
+    <h2>Select Subject Code</h2>
+    <select id="subjectUserSelect">
+      <option value="">--Select Subject--</option>
+      <option value="MATH101">MATH101</option>
+      <option value="PHY101">PHY101</option>
+      <option value="CHEM101">CHEM101</option>
+      <option value="BIO101">BIO101</option>
+    </select>
+
+    <div id="resourceArea" class="hidden">
+      <h3>Resources for <span id="subjectCode"></span></h3>
+      <div id="links">
+        <!-- Links populated dynamically -->
+      </div>
+
+      <div class="suggestion-box">
+        <h4>Your Suggestions:</h4>
+        <textarea id="userSuggestion" rows="3" placeholder="Type your suggestion..."></textarea>
+        <button id="sendSuggestion">Send</button>
+        <p id="suggestionStatus"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const subjSel = document.getElementById('subjectUserSelect');
+    subjSel.addEventListener('change', () => {
+      const code = subjSel.value;
+      const area = document.getElementById('resourceArea');
+      if (!code) {
+        area.classList.add('hidden');
+        return;
+      }
+      document.getElementById('subjectCode').textContent = code;
+      // TODO: Load real links via API
+      document.getElementById('links').innerHTML = `
+        <a href="#">Download PYQs (PDF)</a><br>
+        <a href="#">Download Worksheet (PDF)</a><br>
+        <a href="#">View Extra Notes</a>
+      `;
+      area.classList.remove('hidden');
+    });
+
+    document.getElementById('sendSuggestion').addEventListener('click', () => {
+      document.getElementById('suggestionStatus').textContent = 
+        "Thank you! Your suggestion has been sent.";
+      document.getElementById('userSuggestion').value = '';
+    });
+  </script>
+</body>
+</html>
